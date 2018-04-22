@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             /*Simple git test*/
             /*ss*/
+            /*ssss*/
 
         } else if (id == R.id.nav_slideshow) {
 
