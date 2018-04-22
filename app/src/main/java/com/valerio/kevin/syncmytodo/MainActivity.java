@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
             /*Simple git test*/
+            /*ss*/
 
         } else if (id == R.id.nav_slideshow) {
 
