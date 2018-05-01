@@ -1,5 +1,9 @@
 package com.valerio.kevin.syncmytodo;
 
+import android.os.AsyncTask;
+import android.os.Environment;
+import android.util.Log;
+
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
@@ -15,39 +19,71 @@ public class FTPServeur {
     private String ftpUsername;
     private String ftpPassword;
     private String ftpServerURI;
+    private String TAG = "FTPServeur.java";
     private String ftpTodoPATH;
 
     FTPServeur(FTPServeurBuilder ftpServeurBuilder) {
-        ftpServeurBuilder.ftpUsername = ftpUsername;
-        ftpServeurBuilder.ftpPassword = ftpPassword;
-        ftpServeurBuilder.ftpServerURI = ftpServerURI;
-        ftpServeurBuilder.ftpTodoPATH = ftpTodoPATH;
+        this.ftpUsername = ftpServeurBuilder.ftpUsername;
+        this.ftpPassword = ftpServeurBuilder.ftpPassword;
+        this.ftpServerURI = ftpServeurBuilder.ftpServerURI;
+        this.ftpTodoPATH = ftpServeurBuilder.ftpTodoPATH;
     }
 
-    /*
-    @description Télécharge remoteFile et le met dans folderDestination + "TodoList.txt"
-     */
-    public void downloadTodo(String folderDestination) {
+    public static class DownloadFilesTask extends AsyncTask<Void, Integer, Boolean> {
 
-        FTPClient ftpClient = new FTPClient();
-        try {
-            ftpClient.connect(ftpServerURI, 22);
-            ftpClient.login(ftpUsername, ftpPassword);
-            ftpClient.enterLocalPassiveMode();
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+        /*
+        @description Télécharge remoteFile et le met dans folderDestination + "TodoList.txt"
+         */
+        private FTPServeur FTPServeur;
+        private String folderDestination;
 
-            File downloadFile1 = new File(folderDestination);
-            OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(downloadFile1));
-            boolean success = ftpClient.retrieveFile(ftpTodoPATH, outputStream);
-            outputStream.close();
+        public DownloadFilesTask(FTPServeur ftpServeur, String folderDestination) {
+            this.FTPServeur = ftpServeur;
+            this.folderDestination = folderDestination;
 
-            if (success) System.out.println(ftpTodoPATH + " téléchargé !");
-            else System.out.println(ftpTodoPATH + " NON téléchargé !");
+        }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        void downloadTodo(String folderDestination) {
+
+            FTPClient ftpClient = new FTPClient();
+            try {
+
+                ftpClient.connect(FTPServeur.ftpServerURI, 21);
+                ftpClient.login(FTPServeur.ftpUsername, FTPServeur.ftpPassword);
+                ftpClient.enterLocalPassiveMode();
+                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+                File downloadFile1 = new File(folderDestination);
+                OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+                boolean success = ftpClient.retrieveFile(FTPServeur.ftpTodoPATH, outputStream);
+                outputStream.close();
+
+                if (success) System.out.println(FTPServeur.ftpTodoPATH + " téléchargé !");
+                else System.out.println(FTPServeur.ftpTodoPATH + " NON téléchargé !");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void tryCreateDirectory(String directory) {
+
+            File file = new File(Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOCUMENTS), directory);
+            if (!file.mkdirs()) {
+                Log.e("Directory TAG", "Directory not created");
+            }
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            System.out.println("DownloadFilesTask" + " Destination : " + folderDestination);
+            tryCreateDirectory(folderDestination);
+            downloadTodo(folderDestination.replace("ToDo.txt", ""));
+            return true;
         }
     }
+
 
     public static class FTPServeurBuilder {
         private String ftpUsername;
@@ -60,10 +96,6 @@ public class FTPServeur {
             return this;
         }
 
-        public FTPServeurBuilder setFTPTodoPath(String ftpTodoPATH) {
-            this.ftpTodoPATH = ftpTodoPATH;
-            return this;
-        }
 
         public FTPServeurBuilder setFTPPassword(String ftpPassword) {
             this.ftpPassword = ftpPassword;
