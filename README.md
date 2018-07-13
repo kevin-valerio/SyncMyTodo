@@ -1,6 +1,7 @@
 
 # SyncMyTodo
  
+Download : https://github.com/kevin-valerio/SyncMyTodo/releases
 SyncMyTodo is a free tool that communicate with your powerfull PC to share your **todolist**.
 
  
