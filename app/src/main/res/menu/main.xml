@@ -6,4 +6,16 @@
         android:orderInCategory="100"
         android:title="Paramètres"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_delete_todo"
+        android:orderInCategory="100"
+        android:title="Supprimer les todos"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        android:title="A propos..."
+        app:showAsAction="never" />
+
 </menu>

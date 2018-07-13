@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Jul 13 01:59:36 CEST 2018
+#Fri Jul 13 14:05:58 CEST 2018
 0.baseType=DIRECTORY
 0.base=C\:\\Users\\Utilisateur\\Desktop\\Developpement\\Projet\\Android\\SyncMyTodo\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 0.path=classes.dex

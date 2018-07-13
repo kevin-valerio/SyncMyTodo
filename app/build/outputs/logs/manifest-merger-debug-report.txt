@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
 MERGED from [com.android.support:design:27.1.1] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\4b29bc20bd14df65812bb85c0d9fd5d1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\00e260d790672eb2473b791cc58a18b4\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\10aea8c2719eddbc002f5b7d71d2cd55\AndroidManifest.xml:17:1-22:12
@@ -24,79 +24,83 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Utilisateur\.g
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\ae8ad9218bf3c17721b6319902d33d9d\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\097375392c4a2eb6820afdfbc6775544\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\2ac6d7c3b6f4f11aac8323ac5b4b3bfd\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
 	package
 		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:4:5-43
 		INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
 		INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-31:12
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:1-36:12
 		INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:6:5-103
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:6:5-8:48
 	tools:remove
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:6:65-101
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:8:9-45
 	android:name
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:6:22-64
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:7:9-51
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:7:5-117
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:9:5-11:48
 	tools:remove
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:7:78-114
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:11:9-45
 	android:name
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:7:22-77
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:10:9-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:8:5-117
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:12:5-14:48
 	tools:remove
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:8:79-115
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:14:9-45
 	android:name
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:8:22-78
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:13:9-65
 application
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:10:5-28:19
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:16:5-34:19
 MERGED from [com.github.tbruyelle:rxpermissions:0.10.1] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.10.1.aar\f8c48a1525c79e5a22da4ba501b77c35\AndroidManifest.xml:9:5-20
 MERGED from [com.github.tbruyelle:rxpermissions:0.10.1] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.10.1.aar\f8c48a1525c79e5a22da4ba501b77c35\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\69a6e6a9e7d624408d65e94edba64c13\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Utilisateur\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\69a6e6a9e7d624408d65e94edba64c13\AndroidManifest.xml:9:5-20
 	android:supportsRtl
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:15:9-35
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:21:9-35
 	android:label
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:13:9-41
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:19:9-41
 	android:roundIcon
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:14:9-54
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:20:9-54
 	android:icon
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:12:9-43
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:18:9-43
 	android:allowBackup
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:11:9-35
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:17:9-35
 	android:theme
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:16:9-40
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:22:9-40
 activity#com.valerio.kevin.syncmytodo.MainActivity
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:17:9-27:20
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:23:9-32:20
 	android:label
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:19:13-45
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:25:13-45
 	android:theme
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:20:13-56
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:26:13-56
 	android:name
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:18:13-41
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:24:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:21:13-25:29
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:27:13-31:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:22:17-69
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:28:17-69
 	android:name
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:22:25-66
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:28:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:24:17-77
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:30:17-77
 	android:name
-		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:24:27-74
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:30:27-74
+activity#com.valerio.kevin.syncmytodo.SettingsActivity
+ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:33:9-63
+	android:name
+		ADDED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml:33:19-51
 uses-sdk
 INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Utilisateur\Desktop\Developpement\Projet\Android\SyncMyTodo\app\src\main\AndroidManifest.xml

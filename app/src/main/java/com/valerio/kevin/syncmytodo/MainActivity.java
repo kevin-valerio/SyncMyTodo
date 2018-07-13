@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -20,10 +21,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
 import android.text.style.StyleSpan;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,44 +44,49 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import it.sauronsoftware.ftp4j.FTPClient;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String FTP_HOST = "ftp.darkprod.altervista.org";
-    private static final String FTP_USER = "darkprod";
-    private static final String FTP_PASS = "valerio83";
-    private static final String TODONAME_ONSERVER = "TodoList.txt";
-    private static final String TAG = "MainActivity";
-    private static String TODO_URL = "http://darkprod.altervista.org/TodoList.txt";
-    private static String PATH_WITHOUTNAME = Environment.DIRECTORY_DOWNLOADS + File.separator + "SyncMyTodo";
-    private static String TODO_NAME = "SyncMyTodo-TODO.txt";
+    //"ftp.darkprod.altervista.org"; "darkprod"; "http://darkprod.altervista.org/TodoList.txt";
+    public static String FTP_HOST = "";
+    public static String FTP_USER = "";
+    public static String FTP_PASS = "";
+    public static String TODO_URL = "";
+    public static Boolean SHOWNOTIF = true;
+    public static Boolean DOWNLOAD_ON_STARTUP = true;
     private TextView todoTextView = null;
     private Button uploadBtn = null;
     private FloatingActionButton fab = null;
 
+    public static String TODONAME_ONSERVER = "TodoList.txt";
+    public static String TAG = "MainActivity";
+    public static String PATH_WITHOUTNAME = Environment.DIRECTORY_DOWNLOADS + File.separator + "SyncMyTodo";
+    public static String TODO_NAME = "SyncMyTodo-TODO.txt";
+
     /*
-     * TODO : Dans les réglages, choisir son URL
-     * TODO : Dans les réglages, désactiver la notif
      * TODO : Sur PC : récupérer le Todo sur ftp  tout le temps
      * */
 
-    public static void uploadFile(File fileName) {
-
+    public void uploadFile(File fileName) throws UnknownHostException {
 
         FTPClient client = new FTPClient();
 
         try {
-
             client.connect(FTP_HOST, 21);
             client.login(FTP_USER, FTP_PASS);
             client.setType(FTPClient.TYPE_TEXTUAL);
             client.changeDirectory("/");
             client.upload(fileName, new MyTransferListener());
 
+        } catch (UnknownHostException e) {
+
+            throw new UnknownHostException();
         } catch (Exception e) {
             e.printStackTrace();
             try {
@@ -86,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 e2.printStackTrace();
             }
         }
-
     }
 
     private void createSyncMyTodoDirectory() {
@@ -134,7 +142,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loadSettings();
+        checkIfAreSettingsNotEmpty();
         askForPermissions();
+
         todoTextView = findViewById(R.id.todo_text);
         createSyncMyTodoDirectory();
         //Paramètres
@@ -152,15 +163,78 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         //On init le to-do et tout
-        if (downloadFiles()) {
-            setTodoAsViewableOnly();
+        if (DOWNLOAD_ON_STARTUP) {
+            downloadFiles();
         }
+        setTodoAsViewableOnly();
+
         uploadBtn.setOnClickListener(view -> {
             writeToFile(String.valueOf(todoTextView.getText()), getApplicationContext(), Environment.getExternalStoragePublicDirectory(PATH_WITHOUTNAME) + "/" + TODONAME_ONSERVER);
-            new TodoUploader().execute(1, 1, 1);
+            try {
+                int error = new TodoUploader().execute(1, 1, 1).get();
+                if (error == 1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder
+                            .setCancelable(true)
+                            .setMessage("Vos logs FTP semblent erronnés, l'host n'est pas reconnu...")
+                            .setPositiveButton("Vérifier mes parametres", (dialogInterface, i) -> {
+                                Intent settings = new Intent(getApplicationContext(), SettingsActivity.class);
+                                startActivity(settings);
+                            })
+                            .setTitle("Impossible de synchroniser le todo");
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
 
         });
 
+    }
+
+    private void checkIfAreSettingsNotEmpty() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Aucun paramètre FTP trouvé !")
+                .setMessage("Vous devez remplir les logs du serveur où se trouve votre To Do")
+                .setPositiveButton("Aller aux parammetres", (dialogInterface, i) -> {
+                    Intent settings = new Intent(this, SettingsActivity.class);
+                    startActivity(settings);
+                })
+                .setNegativeButton("Rester ici", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "N'oubliez pas de remplir vos logs...", Toast.LENGTH_LONG).show());
+
+        AlertDialog.Builder alertURL = new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Aucun lien de Todotrouvé !")
+                .setMessage("Vous devez remplir le lien de votre Todo")
+                .setPositiveButton("Aller aux parammetres", (dialogInterface, i) -> {
+                    Intent settings = new Intent(this, SettingsActivity.class);
+                    startActivity(settings);
+                })
+                .setNegativeButton("Rester ici", (dialogInterface, i) -> Toast.makeText(getApplicationContext(), "N'oubliez pas de remplir vos logs...", Toast.LENGTH_LONG).show());
+
+
+        if (FTP_PASS.equals("") || FTP_HOST.equals("") || FTP_USER.equals(""))
+            alertDialog.show();
+
+        if (TODO_URL.equals("")) {
+            alertURL.show();
+        }
+    }
+
+    private void loadSettings() {
+
+        SharedPreferences preferences = getSharedPreferences("SETTINGS", MODE_PRIVATE);
+        SHOWNOTIF = preferences.getBoolean(SettingsActivity.NOTIF, true);
+        DOWNLOAD_ON_STARTUP = preferences.getBoolean(SettingsActivity.AUTODOWNLOAD, true);
+        FTP_PASS = preferences.getString(SettingsActivity.USER, "");
+        FTP_HOST = preferences.getString(SettingsActivity.PASS, "");
+        FTP_USER = preferences.getString(SettingsActivity.SERVER, "");
+        TODO_URL = preferences.getString(SettingsActivity.TUDOURL, "");
     }
 
     private void writeToFile(String data, Context context, String path) {
@@ -180,10 +254,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String url = TODO_URL;
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
             removePreviousTodoFile(Environment.getExternalStoragePublicDirectory(PATH_WITHOUTNAME));
+
             request.setDescription("SyncMyTodo is downloading your todo now !");
             request.setTitle("SyncMyTodo - Synchronisisation (" + TODO_URL.replace("/" + TODONAME_ONSERVER, "") + ").");
             request.allowScanningByMediaScanner();
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+            if (SHOWNOTIF) {
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            } else {
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+            }
 
             request.setDestinationInExternalPublicDir(PATH_WITHOUTNAME, TODO_NAME);
             DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
@@ -212,6 +292,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     void removePreviousTodoFile(File fileOrDirectory) {
         try {
+
             if (fileOrDirectory.isDirectory())
                 for (File child : fileOrDirectory.listFiles())
                     removePreviousTodoFile(child);
@@ -290,10 +371,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            return true;
+            Intent settings = new Intent(this, SettingsActivity.class);
+            startActivity(settings);
+        } else if (id == R.id.action_delete_todo) {
+            removePreviousTodoFile(Environment.getExternalStoragePublicDirectory(PATH_WITHOUTNAME));
+            Toast.makeText(MainActivity.this, "Todos supprimés !", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.action_about) {
+            showAboutPopup();
+
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showAboutPopup() {
+        final TextView message = new TextView(getApplicationContext());
+        final SpannableString s = new SpannableString("Cette application a été crée le 12 et 13 Juillet 2018 par une journée d'ennui par Kevin VALERIO. Vous trouverez surement le code source de l'application" +
+                "sur mon Github : github.com/kevin-valerio");
+        Linkify.addLinks(s, Linkify.WEB_URLS);
+        message.setText(s);
+        message.setMovementMethod(LinkMovementMethod.getInstance());
+        message.setFontFeatureSettings("'wdth' 150");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setCancelable(true)
+                .setView(message)
+                .setPositiveButton("Thanks Kevin!", null)
+                .setTitle("A propos de");
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -321,12 +429,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class TodoUploader extends AsyncTask<Integer, Integer, Integer> {
 
         @Override
         protected Integer doInBackground(Integer... arg) {
             File file = new File(Environment.getExternalStoragePublicDirectory(PATH_WITHOUTNAME) + "/" + TODONAME_ONSERVER);
-            uploadFile(file);
+            try {
+                uploadFile(file);
+            } catch (UnknownHostException e) {
+                return 1;
+            }
             Toast.makeText(MainActivity.this, "Todo mit en ligne avec succès !", Toast.LENGTH_SHORT).show();
             return 0;
         }
